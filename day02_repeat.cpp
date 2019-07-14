@@ -88,4 +88,32 @@ void insert(int &i,int j){
 	}
 	if(j<val[i])insert(lc[i],j);
 	else insert(rc[i],j);
+} 
+
+//并查集
+//合并集合 查询是否在同 一个集合 
+int fa[10005]; 
+
+int getFa(int);
+
+bool test2(int x,int y){
+	//针对一个询问 
+	int r1 = getFa(x);
+	int r2 = getFa(y);
+	if(r1 == r2){
+		return true;
+	}else{
+		//不是就合并，把一个 归纳到另一个作为儿子 
+		fa[x] = y;
+		return false; 
+	} 
+}
+
+int getFa(int i){
+	if(fa[v] == i)return i;
+	
+	fa[v] = getFa(fa[v]);
+	
+	return fa[v];
+	
 }
